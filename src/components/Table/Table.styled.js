@@ -75,7 +75,6 @@ export const TableHeader = styled.header`
 
 export const Main = styled.main`
   background-image: linear-gradient(135deg, #f2f5ff 0%, #f7f4ff 100%);
-  z-index: 1;
 `;
 
 export const MainRow = styled.section`

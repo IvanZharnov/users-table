@@ -22,17 +22,16 @@ import {
 
 class UsersTable extends Component {
 
-  componentWillMount() {
+  state = {
+    isModalOpen: false,
+  }
+
+  componentDidMount() {
     this.props.getUsers();
   };
 
-  handleClick(e){
-    console.log(this.props.modal);
-    e.preventDefault();
-    if (this.props.modalIsActive)
-      this.props.closeModal();
-    else
-      this.props.openModal();
+  handleModalClick = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
   }
 
   handleDeleteButtonClick = (id) => {
@@ -42,7 +41,6 @@ class UsersTable extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <Wrapper>
         <Header>
@@ -52,10 +50,10 @@ class UsersTable extends Component {
           <Title>
             Users
           </Title>
-          <CreateButton onClick={(e)=>this.handleClick(e)}>
+          <CreateButton onClick={this.handleModalClick}>
             create
           </CreateButton>
-          {this.props.modalIsActive && <Modal closeModal={this.props.closeModal}/>}
+          {this.state.isModalOpen && <Modal closeModal={this.handleModalClick} />}
         </Header>
         <Table>
           <TableHeader>
@@ -75,7 +73,7 @@ class UsersTable extends Component {
               delete
             </span>
           </TableHeader>
-          {this.props.users.length &&
+          {!!this.props.users.length &&
           <Main>
           {this.props.users.map(item =>
             <Fragment>
@@ -92,7 +90,7 @@ class UsersTable extends Component {
                 <UpdateButton>
                   update
                 </UpdateButton>
-                <DeleteButton onClick={() => this.handleDeleteButtonClick(item.id)}>
+                <DeleteButton onClick = {() => this.handleDeleteButtonClick(item.id)}>
                   delete
                 </DeleteButton>
               </MainRow>
