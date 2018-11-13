@@ -24,24 +24,51 @@ import {
 
 class UsersTable extends Component {
 
-
   state = {
     isModalOpen: false,
     firstName: '',
     lastName: '',
+    id: null,
   };
 
   componentDidMount() {
     this.props.getUsers();
   };
 
-  handleOpenUpdateModalClick = (first_name, last_name) => {
-    console.log('STATE', this.state);
-    console.log('PROPS', this.props);
-    this.setState({ isModalOpen: !this.state.isModalOpen });
-    this.setState({ firstName: first_name });
-    this.setState({ lastName: last_name });
+  handleOpenUpdateModalClick = (id, first_name, last_name) => {
+    this.setState({
+      isModalOpen: true,
+      firstName: first_name,
+      lastName: last_name,
+      id: id,
+    });
   }
+
+  handleChangeFirstName = (event) => {
+    this.setState({firstName: event.target.value});
+  };
+
+  handleChangeLastName = (event) => {
+    this.setState({firstName: event.target.value});
+  };
+
+  handleSave = (id, first_name, last_name) => {
+    this.props.updateUser(id, first_name, last_name)
+    this.handleCloseModalClick();
+  }
+
+  handleOpenCreateModalClick = () => {
+    this.setState({ isModalOpen: true });
+  }
+
+  handleCloseModalClick = () => {
+    this.setState({
+      isModalOpen: false,
+      firstName: '',
+      lastName: '',
+      id: null,
+    });
+  };
 
   handleDeleteButtonClick = (id) => {
     console.log('ID', id);
@@ -58,12 +85,21 @@ class UsersTable extends Component {
           <Title>
             Users
           </Title>
-          <CreateButton onClick={this.handleOpenModalClick}>
+          <CreateButton onClick={this.handleOpenCreateModalClick}>
             create
           </CreateButton>
-          {this.state.isModalOpen && <Modal closeModal={this.handleOpenModalClick}
-          firstNameValue={this.state.firstName}
-          lastNameValue={this.state.lastName} />}
+          {
+            this.state.isModalOpen &&
+            <Modal
+              closeModal={this.handleCloseModalClick}
+              changeFirstName={this.handleChangeFirstName}
+              changeLastName={this.handleChangeLastName}
+              firstNameValue={this.state.firstName}
+              lastNameValue={this.state.lastName}
+              id={this.state.id}
+              saveData={this.handleSave}
+            />
+          }
         </Header>
         <Table>
           <TableHeader>
@@ -97,7 +133,7 @@ class UsersTable extends Component {
                 <span>
                   {item.last_name}
                 </span>
-                <UpdateButton onClick={() => this.handleOpenUpdateModalClick(item.first_name, item.last_name)}>
+                <UpdateButton onClick={() => this.handleOpenUpdateModalClick(item.id, item.first_name, item.last_name)}>
                   update
                 </UpdateButton>
                 <DeleteButton onClick={() => this.handleDeleteButtonClick(item.id)}>
