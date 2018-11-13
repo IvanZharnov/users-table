@@ -13,29 +13,7 @@ import {
 
 class Modal extends Component {
 
-  state = {
-    firstNameValue: this.props.firstNameValue,
-    lastNameValue: this.props.lastNameValue,
-  };
-
-  handleChangeFirstName = (event) => {
-    this.setState({firstNameValue: event.target.value});
-    console.log('MODAL PROPS', this.props);
-  };
-
-  handleChangeLastName = (event) => {
-    this.setState({lastNameValue: event.target.value});
-  };
-
-  handleSubmit = (event) => {
-    console.log('SAVED DATA', event.target.value);
-    event.preventDefault();
-  };
-
   render(){
-    console.log('MODAL STATE', this.state)
-    // console.log('MODAL PROPS', this.props)
-
     return (
       <ModalWindow>
           <ModalContent>
@@ -46,19 +24,34 @@ class Modal extends Component {
               <ModalMainText>
                 First name
               </ModalMainText>
-              <ModalMainInput name="firstNameValue" type="text" required autoFocus placeholder="John" value={this.state.firstNameValue} onChange={this.handleChangeFirstName.bind(this)}>
+              <ModalMainInput
+                name="firstNameValue"
+                type="text"
+                required
+                autoFocus
+                placeholder="John"
+                value={this.props.firstNameValue}
+                onChange={this.props.changeFirstName}
+              >
               </ModalMainInput>
               <ModalMainText>
                 Last name
               </ModalMainText>
-              <ModalMainInput name="lastNameValue" type="text" required placeholder="Johnson" value={this.state.lastNameValue} onChange={this.handleChangeLastName.bind(this)}>
+              <ModalMainInput
+                name="lastNameValue"
+                type="text"
+                required
+                placeholder="Johnson"
+                value={this.props.lastNameValue}
+                onChange={this.props.changeFirstName}
+              >
               </ModalMainInput>
             </ModalMain>
             <ModalFooter>
               <ModalFooterButton onClick={this.props.closeModal}>
                 Cancel
               </ModalFooterButton>
-              <ModalFooterButton onSubmit={this.handleSubmit.bind(this)}>
+              <ModalFooterButton onClick={() => this.props.saveData(this.props.id, this.props.firstNameValue, this.props.lastNameValue)}>
                 Save
               </ModalFooterButton>
             </ModalFooter>

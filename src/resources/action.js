@@ -37,12 +37,17 @@ export const createUser = () => async (dispatch) => {
   });
 };
 
-export const updateUser = (id) => async (dispatch) => {
+export const updateUser = (id, first_name, last_name) => async (dispatch) => {
 
-  const users = await axios.put(`https://reqres.in/api/users/${id}`);
+  const users = await axios.put(`https://reqres.in/api/users/${id}`,
+    {
+      first_name,
+      last_name,
+      id,
+    });
   console.log('UPDATE USER', users);
     dispatch({
       type: UPDATE_USER,
-      id,
+      user: users.data,
     });
 };

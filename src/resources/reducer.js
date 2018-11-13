@@ -17,12 +17,9 @@ const users = (state = initialState, action) => {
     case DELETE_USER:
       return state.filter(item => item.id !== action.id);
     case CREATE_USER:
-      return {
-        ...state,
-        createdUser: action.newUser,
-      };
+      return state;
     case UPDATE_USER:
-      return action.users;
+      return state.map(item => item.id === action.user.id ? action.user : item );
     default:
       return state;
   }
