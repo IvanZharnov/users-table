@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 const transition = keyframes`
-  from {top: -300px; opacity: 0;}
+  from {top: -200px; opacity: 0;}
   to {top: 0; opacity: 1;}
 `;
 
@@ -19,49 +19,66 @@ export const ModalWindow = styled.div`
 `;
 
 export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
   position: relative;
-  background-color: #fefefe;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
-  width: 50%;
+  border-radius: 10px;
+  width: 25%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   -webkit-animation-name: ${transition};
-  -webkit-animation-duration: 0.4s;
+  -webkit-animation-duration: 0.5s;
   animation-name: ${transition};
-  animation-duration: 0.4s
+  animation-duration: 0.5s
 `;
 
-export const ModalHeader = styled.div`
-  padding: 2px 16px;
-  background-color: #b4e2b4;
-  color: white;
+export const ModalHeader = styled.span`
+  color: #fff;
+  font-size: 30px;
+  padding: 20px;
+  border-bottom: 1px solid #ffffff69;
 `;
 
-export const ModalBody = styled.div`
-  padding: 2px 16px;
+export const ModalMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px 20px 20px;
 `;
 
+export const ModalMainText = styled.span`
+  color: #fff;
+  font-size: 16px;
+  margin: 20px 0 10px 0;
+`;
+
+export const ModalMainInput = styled.input`
+  color: #000;
+  border: none;
+  border-radius: 3px;
+  height: 25px;
+  font-size: 17px;
+  outline: none;
+  padding-left: 8px;
+`;
 
 export const ModalFooter = styled.div`
-  padding: 2px 16px;
-  background-color: #b4e2b4;
-  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  border-top: 1px solid #ffffff69;
 `;
 
-export const Close = styled.span`
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  &:hover {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  &:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+export const ModalFooterButton = styled.button`
+  height: 30px;
+  width: 90px;
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
 `;

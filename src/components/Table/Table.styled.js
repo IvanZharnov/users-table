@@ -25,7 +25,7 @@ export const ReloadButton = styled.button`
   width: 115px;
   background: none;
   border: 1px solid #2246eb;
-  border-radius: 3px;
+  border-radius: 8px;
   color: #2246eb;
   cursor: pointer;
   text-transform: uppercase;
@@ -45,7 +45,7 @@ export const CreateButton = styled.button`
   width: 115px;
   background: none;
   border: 1px solid #279c2f;
-  border-radius: 3px;
+  border-radius: 8px;
   color: #279c2f;
   cursor: pointer;
   text-transform: uppercase;
@@ -56,8 +56,9 @@ export const Table = styled.article`
   display: grid;
   height: 100%;
   width: 100%;
-  border: 1px solid #2246eb;
-  border-radius: 2px;
+  border: 1px solid #667eea;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 export const TableHeader = styled.header`
@@ -95,7 +96,7 @@ export const UpdateButton = styled.button`
   width: 80px;
   background: none;
   border: 1px solid #2246eb;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #2246eb;
   cursor: pointer;
   outline: none;
@@ -109,7 +110,7 @@ export const DeleteButton = styled.button`
   width: 80px;
   background: none;
   border: 1px solid #d40000;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #d40000;
   cursor: pointer;
   outline: none;

@@ -2,7 +2,9 @@ import React, { PureComponent as Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import {
   getUsers,
-  deleteUser
+  deleteUser,
+  createUser,
+  updateUser,
  } from '../../resources/action';
 import * as userSelector from '../../resources/selector';
 import Modal from '../ModalWindow/ModalWindow.component';
@@ -22,38 +24,46 @@ import {
 
 class UsersTable extends Component {
 
+
   state = {
     isModalOpen: false,
-  }
+    firstName: '',
+    lastName: '',
+  };
 
   componentDidMount() {
     this.props.getUsers();
   };
 
-  handleModalClick = () => {
+  handleOpenUpdateModalClick = (first_name, last_name) => {
+    console.log('STATE', this.state);
+    console.log('PROPS', this.props);
     this.setState({ isModalOpen: !this.state.isModalOpen });
+    this.setState({ firstName: first_name });
+    this.setState({ lastName: last_name });
   }
 
   handleDeleteButtonClick = (id) => {
     console.log('ID', id);
-    const { deleteUser } = this.props;
-    deleteUser(id);
+    this.props.deleteUser(id);
   };
 
   render() {
     return (
       <Wrapper>
         <Header>
-          <ReloadButton>
+          <ReloadButton onClick={this.props.getUsers}>
             reload
           </ReloadButton>
           <Title>
             Users
           </Title>
-          <CreateButton onClick={this.handleModalClick}>
+          <CreateButton onClick={this.handleOpenModalClick}>
             create
           </CreateButton>
-          {this.state.isModalOpen && <Modal closeModal={this.handleModalClick} />}
+          {this.state.isModalOpen && <Modal closeModal={this.handleOpenModalClick}
+          firstNameValue={this.state.firstName}
+          lastNameValue={this.state.lastName} />}
         </Header>
         <Table>
           <TableHeader>
@@ -87,10 +97,10 @@ class UsersTable extends Component {
                 <span>
                   {item.last_name}
                 </span>
-                <UpdateButton>
+                <UpdateButton onClick={() => this.handleOpenUpdateModalClick(item.first_name, item.last_name)}>
                   update
                 </UpdateButton>
-                <DeleteButton onClick = {() => this.handleDeleteButtonClick(item.id)}>
+                <DeleteButton onClick={() => this.handleDeleteButtonClick(item.id)}>
                   delete
                 </DeleteButton>
               </MainRow>
@@ -111,6 +121,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getUsers,
   deleteUser,
+  createUser,
+  updateUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersTable);
