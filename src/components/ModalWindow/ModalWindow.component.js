@@ -11,6 +11,9 @@ import {
   ModalFooterButton,
 } from './ModalWindow.styled';
 
+const CREATE_USER = 'Create User';
+const UPDATE_USER = 'Update User';
+
 class Modal extends Component {
 
   render(){
@@ -18,7 +21,7 @@ class Modal extends Component {
       <ModalWindow>
           <ModalContent>
             <ModalHeader>
-              Create user
+              {this.props.isCreate ? CREATE_USER : UPDATE_USER}
             </ModalHeader>
             <ModalMain>
               <ModalMainText>
@@ -41,9 +44,9 @@ class Modal extends Component {
                 name="lastNameValue"
                 type="text"
                 required
-                placeholder="Johnson"
+                placeholder="Doe"
                 value={this.props.lastNameValue}
-                onChange={this.props.changeFirstName}
+                onChange={this.props.changeLastName}
               >
               </ModalMainInput>
             </ModalMain>
@@ -51,7 +54,11 @@ class Modal extends Component {
               <ModalFooterButton onClick={this.props.closeModal}>
                 Cancel
               </ModalFooterButton>
-              <ModalFooterButton onClick={() => this.props.saveData(this.props.id, this.props.firstNameValue, this.props.lastNameValue)}>
+              <ModalFooterButton onClick={() => this.props.saveData(
+                this.props.id,
+                this.props.firstNameValue,
+                this.props.lastNameValue
+              )}>
                 Save
               </ModalFooterButton>
             </ModalFooter>

@@ -6,9 +6,8 @@ import {
 } from './action';
 
 const initialState = {
-  users: [],
-  createdUser: {},
-}
+  users: []
+};
 
 const users = (state = initialState, action) => {
   switch (action.type) {
@@ -17,9 +16,12 @@ const users = (state = initialState, action) => {
     case DELETE_USER:
       return state.filter(item => item.id !== action.id);
     case CREATE_USER:
-      return state;
+    console.log(state);
+      return state.concat(action.newUser)
     case UPDATE_USER:
-      return state.map(item => item.id === action.user.id ? action.user : item );
+      return state.map(
+        item => item.id === action.updatedUser.id ? action.updatedUser : item
+      );
     default:
       return state;
   }

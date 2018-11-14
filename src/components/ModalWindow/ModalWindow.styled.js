@@ -81,4 +81,10 @@ export const ModalFooterButton = styled.button`
   font-size: 15px;
   cursor: pointer;
   outline: none;
+  &:hover {
+    box-shadow: 0px 0px 3px 1px #fff;
+  }
+  &:active {
+    box-shadow: inset 0px 0px 3px 1px #fff;
+  }
 `;
