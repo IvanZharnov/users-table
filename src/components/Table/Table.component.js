@@ -26,6 +26,7 @@ class UsersTable extends Component {
 
   state = {
     isModalOpen: false,
+    isCreateModal: true,
     firstName: '',
     lastName: '',
     id: null,
@@ -38,9 +39,17 @@ class UsersTable extends Component {
   handleOpenUpdateModalClick = (id, first_name, last_name) => {
     this.setState({
       isModalOpen: true,
+      isCreateModal: false,
       firstName: first_name,
       lastName: last_name,
       id: id,
+    });
+  };
+
+  handleOpenCreateModalClick = () => {
+    this.setState({
+      isModalOpen: true,
+      isCreateModal: true
     });
   }
 
@@ -49,21 +58,20 @@ class UsersTable extends Component {
   };
 
   handleChangeLastName = (event) => {
-    this.setState({firstName: event.target.value});
+    this.setState({lastName: event.target.value});
   };
 
   handleSave = (id, first_name, last_name) => {
+    (this.state.isCreateModal) ?
+    this.props.createUser(first_name, last_name) :
     this.props.updateUser(id, first_name, last_name)
     this.handleCloseModalClick();
-  }
-
-  handleOpenCreateModalClick = () => {
-    this.setState({ isModalOpen: true });
   }
 
   handleCloseModalClick = () => {
     this.setState({
       isModalOpen: false,
+      isCreateModal: '',
       firstName: '',
       lastName: '',
       id: null,
@@ -71,7 +79,6 @@ class UsersTable extends Component {
   };
 
   handleDeleteButtonClick = (id) => {
-    console.log('ID', id);
     this.props.deleteUser(id);
   };
 
@@ -98,6 +105,7 @@ class UsersTable extends Component {
               lastNameValue={this.state.lastName}
               id={this.state.id}
               saveData={this.handleSave}
+              isCreate={this.state.isCreateModal}
             />
           }
         </Header>

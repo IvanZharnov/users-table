@@ -8,7 +8,7 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const getUsers = () => async (dispatch) => {
 
   const { data } = await axios.get(`https://reqres.in/api/users`);
-    console.log('GET USERS', data);
+  console.log('GET USERS', data);
   dispatch({
     type: GET_USERS,
     users: data.data,
@@ -17,23 +17,26 @@ export const getUsers = () => async (dispatch) => {
 
 export const deleteUser = (id) => async (dispatch) => {
 
-  console.log('ID ACTION', id);
-
   const users = await axios.delete(`https://reqres.in/api/users/${id}`);
   console.log('DELETE USER', users);
-    dispatch({
-      type: DELETE_USER,
-      id,
-    });
+  dispatch({
+    type: DELETE_USER,
+    id,
+  });
 };
 
-export const createUser = () => async (dispatch) => {
+export const createUser = (first_name, last_name) => async (dispatch) => {
 
-  const newUser = await axios.post(`https://reqres.in/api/users`);
-    console.log('NEW USER', newUser);
+  const newUser = await axios.post(`https://reqres.in/api/users`,
+    {
+      first_name,
+      last_name
+    }
+  );
+  console.log('NEW USER', newUser);
   dispatch({
     type: CREATE_USER,
-    newUser,
+    newUser: newUser.data,
   });
 };
 
@@ -43,11 +46,12 @@ export const updateUser = (id, first_name, last_name) => async (dispatch) => {
     {
       first_name,
       last_name,
-      id,
-    });
+      id
+    }
+  );
   console.log('UPDATE USER', users);
-    dispatch({
-      type: UPDATE_USER,
-      user: users.data,
-    });
+  dispatch({
+    type: UPDATE_USER,
+    updatedUser: users.data,
+  });
 };
