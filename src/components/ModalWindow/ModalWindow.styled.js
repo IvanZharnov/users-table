@@ -22,7 +22,7 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: linear-gradient(135deg, #3b41c5 0%, #a981bb 100%);
   margin: auto;
   padding: 0;
   border-radius: 10px;
@@ -75,16 +75,17 @@ export const ModalFooterButton = styled.button`
   height: 30px;
   width: 90px;
   background: none;
-  border: 1px solid #fff;
+  border: none;
   border-radius: 3px;
   color: #fff;
   font-size: 15px;
   cursor: pointer;
   outline: none;
+  box-shadow: 0px 2px 5px #4b4b4b, inset 0px 2px 2px #e2e2e2;
   &:hover {
-    box-shadow: 0px 0px 3px 1px #fff;
+    color: #d9d9d9;
   }
   &:active {
-    box-shadow: inset 0px 0px 3px 1px #fff;
+    box-shadow: 0px 1px 2px #4b4b4b, inset 0px 1px 1px #e2e2e2;
   }
 `;

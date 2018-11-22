@@ -7,11 +7,11 @@ export const UPDATE_USER = 'UPDATE_USER';
 
 export const getUsers = () => async (dispatch) => {
 
-  const { data } = await axios.get(`https://reqres.in/api/users`);
-  console.log('GET USERS', data);
+  const { users } = await axios.get(`https://localhost:3001/users`);
+  console.log('GET USERS', users);
   dispatch({
     type: GET_USERS,
-    users: data.data,
+    users: users,
   });
 };
 
