@@ -23,18 +23,36 @@ export const ReloadButton = styled.button`
   justify-content: center;
   height: 35px;
   width: 115px;
-  background: none;
-  border: 1px solid #2246eb;
+  background: #f7f7f7;
+  border: none;
   border-radius: 8px;
-  color: #2246eb;
+  color: #808080;
   cursor: pointer;
   text-transform: uppercase;
   outline: none;
+  box-shadow: 0px 2px 5px #9d9d9d, inset 0px 2px 2px #ffffff;
+  &:hover {
+    color: #2246eb;
+  }
+  &:active {
+    box-shadow: 0px 1px 2px #9d9d9d, inset 0px 1px 1px #ffffff;
+  }
 `;
 
 export const Title = styled.article`
-  color: #2246eb;
-  font-size: 30px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 410px;
+  background: #f7f7f7;
+  border: none;
+  border-radius: 8px;
+  color: #6f60c0;
+  text-transform: uppercase;
+  outline: none;
+  box-shadow: 0px 2px 6px #9d9d9d, inset 0px 2px 2px #ffffff;
 `;
 
 export const CreateButton = styled.button`
@@ -43,22 +61,30 @@ export const CreateButton = styled.button`
   justify-content: center;
   height: 35px;
   width: 115px;
-  background: none;
-  border: 1px solid #279c2f;
+  background: #f7f7f7;
+  border: none;
   border-radius: 8px;
-  color: #279c2f;
+  color: #808080;
   cursor: pointer;
   text-transform: uppercase;
   outline: none;
+  box-shadow: 0px 2px 6px #9d9d9d, inset 0px 2px 2px #ffffff;
+  &:hover {
+    color: #00a70b;
+  }
+  &:active {
+    box-shadow: 0px 1px 2px #9d9d9d, inset 0px 1px 1px #ffffff;
+  }
 `;
 
 export const Table = styled.article`
   display: grid;
   height: 100%;
   width: 100%;
-  border: 1px solid #667eea;
+  border: none;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0px 1px 10px #9d9d9d;
 `;
 
 export const TableHeader = styled.header`
@@ -66,7 +92,7 @@ export const TableHeader = styled.header`
   grid-template-columns: 1fr repeat(4, 2fr);
   align-items: center;
   justify-items: center;
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: linear-gradient(135deg, #3b41c5 0%, #a981bb 100%);
   width: 100%;
   height: 50px;
   font-size: 15px;
@@ -75,7 +101,7 @@ export const TableHeader = styled.header`
 `;
 
 export const Main = styled.main`
-  background-image: linear-gradient(135deg, #f2f5ff 0%, #f7f4ff 100%);
+  background: #f7f7f7;
 `;
 
 export const MainRow = styled.section`
@@ -86,6 +112,7 @@ export const MainRow = styled.section`
   height: 50px;
   font-size: 14px;
   color: #2246eb;
+  border-bottom: 1px solid #dfdfdf;
 `;
 
 export const UpdateButton = styled.button`
@@ -94,12 +121,19 @@ export const UpdateButton = styled.button`
   justify-content: center;
   height: 28px;
   width: 80px;
-  background: none;
-  border: 1px solid #2246eb;
+  background: #f7f7f7;
+  border: none;
   border-radius: 5px;
-  color: #2246eb;
+  color: #808080;
   cursor: pointer;
   outline: none;
+  box-shadow: 0px 2px 5px #9d9d9d, inset 0px 2px 2px #ffffff;
+  &:hover {
+    color: #2246eb;
+  }
+  &:active {
+    box-shadow: 0px 1px 2px #9d9d9d, inset 0px 1px 1px #ffffff;
+  }
 `;
 
 export const DeleteButton = styled.button`
@@ -109,9 +143,16 @@ export const DeleteButton = styled.button`
   height: 28px;
   width: 80px;
   background: none;
-  border: 1px solid #d40000;
+  border: none;
   border-radius: 5px;
-  color: #d40000;
+  color: #808080;
   cursor: pointer;
   outline: none;
+  box-shadow: 0px 2px 5px #9d9d9d, inset 0px 2px 2px #ffffff;
+  &:hover {
+    color: #d40000;
+  }
+  &:active {
+    box-shadow: 0px 1px 2px #9d9d9d, inset 0px 1px 1px #ffffff;
+  }
 `;
