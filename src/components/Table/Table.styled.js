@@ -22,7 +22,7 @@ export const ReloadButton = styled.button`
   align-items: center;
   justify-content: center;
   height: 35px;
-  width: 115px;
+  width: 15%;
   background: #f7f7f7;
   border: none;
   border-radius: 8px;
@@ -45,7 +45,7 @@ export const Title = styled.article`
   align-items: center;
   justify-content: center;
   height: 35px;
-  width: 410px;
+  width: 60%;
   background: #f7f7f7;
   border: none;
   border-radius: 8px;
@@ -60,7 +60,7 @@ export const CreateButton = styled.button`
   align-items: center;
   justify-content: center;
   height: 35px;
-  width: 115px;
+  width: 15%;
   background: #f7f7f7;
   border: none;
   border-radius: 8px;
@@ -101,7 +101,7 @@ export const TableHeader = styled.header`
 `;
 
 export const Main = styled.main`
-  background: #f7f7f7;
+  background: #fafafa;
 `;
 
 export const MainRow = styled.section`
@@ -111,7 +111,7 @@ export const MainRow = styled.section`
   align-items: center;
   height: 50px;
   font-size: 14px;
-  color: #2246eb;
+  color: #808080;
   border-bottom: 1px solid #dfdfdf;
 `;
 
