@@ -7,17 +7,17 @@ export const UPDATE_USER = 'UPDATE_USER';
 
 export const getUsers = () => async (dispatch) => {
 
-  const { users } = await axios.get(`https://localhost:3001/users`);
+  const users = await axios.get(`http://localhost:4000/users`);
   console.log('GET USERS', users);
   dispatch({
     type: GET_USERS,
-    users: users,
+    users: users.data,
   });
 };
 
 export const deleteUser = (id) => async (dispatch) => {
 
-  const users = await axios.delete(`https://reqres.in/api/users/${id}`);
+  const users = await axios.delete(`http://localhost:4000/delete/${id}`);
   console.log('DELETE USER', users);
   dispatch({
     type: DELETE_USER,
@@ -27,7 +27,7 @@ export const deleteUser = (id) => async (dispatch) => {
 
 export const createUser = (first_name, last_name) => async (dispatch) => {
 
-  const newUser = await axios.post(`https://reqres.in/api/users`,
+  const newUser = await axios.post(`http://localhost:4000/create`,
     {
       first_name,
       last_name
