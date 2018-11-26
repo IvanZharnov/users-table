@@ -8,7 +8,6 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const getUsers = () => async (dispatch) => {
 
   const users = await axios.get(`http://localhost:4000/users`);
-  console.log('GET USERS', users);
   dispatch({
     type: GET_USERS,
     users: users.data,
@@ -33,7 +32,6 @@ export const createUser = (first_name, last_name) => async (dispatch) => {
       last_name
     }
   );
-  console.log('NEW USER', newUser);
   dispatch({
     type: CREATE_USER,
     newUser: newUser.data,
@@ -42,16 +40,15 @@ export const createUser = (first_name, last_name) => async (dispatch) => {
 
 export const updateUser = (id, first_name, last_name) => async (dispatch) => {
 
-  const users = await axios.put(`https://reqres.in/api/users/${id}`,
+  const updatedUser = await axios.put(`http://localhost:4000/update/${id}`,
     {
+      id,
       first_name,
-      last_name,
-      id
+      last_name
     }
   );
-  console.log('UPDATE USER', users);
   dispatch({
     type: UPDATE_USER,
-    updatedUser: users.data,
+    updatedUser: updatedUser.data,
   });
 };
