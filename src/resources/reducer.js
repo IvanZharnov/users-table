@@ -16,7 +16,6 @@ const users = (state = initialState, action) => {
     case DELETE_USER:
       return state.filter(item => item.id !== action.id);
     case CREATE_USER:
-    console.log(state);
       return state.concat(action.newUser)
     case UPDATE_USER:
       return state.map(
