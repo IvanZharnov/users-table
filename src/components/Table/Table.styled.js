@@ -17,42 +17,35 @@ export const Header = styled.div`
   margin: 20px 0;
 `;
 
-export const ReloadButton = styled.button`
+export const Title = styled.article`
   display: flex;
+  font-size: 14px;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   height: 35px;
-  width: 15%;
+  width: 13%;
   background: #f7f7f7;
   border: none;
   border-radius: 8px;
-  color: #808080;
+  color: #4748c4;
+  fill: #4748c4;
+  outline: none;
   cursor: pointer;
   text-transform: uppercase;
-  outline: none;
-  box-shadow: 0px 2px 5px #9d9d9d, inset 0px 2px 2px #ffffff;
-  &:hover {
-    color: #2246eb;
-  }
+  box-shadow: 0px 2px 6px #9d9d9d, inset 0px 2px 2px #ffffff;
   &:active {
     box-shadow: 0px 1px 2px #9d9d9d, inset 0px 1px 1px #ffffff;
   }
 `;
 
-export const Title = styled.article`
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 35px;
-  width: 60%;
-  background: #f7f7f7;
-  border: none;
-  border-radius: 8px;
-  color: #6f60c0;
-  text-transform: uppercase;
-  outline: none;
-  box-shadow: 0px 2px 6px #9d9d9d, inset 0px 2px 2px #ffffff;
+export const TitleText = styled.span`
+  margin-right: 20px;
+`;
+
+export const Icon = styled.svg`
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
 `;
 
 export const CreateButton = styled.button`
@@ -60,21 +53,30 @@ export const CreateButton = styled.button`
   align-items: center;
   justify-content: center;
   height: 35px;
-  width: 15%;
+  width: 13%;
   background: #f7f7f7;
   border: none;
   border-radius: 8px;
   color: #808080;
+  fill: #808080;
   cursor: pointer;
   text-transform: uppercase;
   outline: none;
+  font-size: 14px;
   box-shadow: 0px 2px 6px #9d9d9d, inset 0px 2px 2px #ffffff;
   &:hover {
     color: #00a70b;
+    fill: #00a70b;
   }
   &:active {
     box-shadow: 0px 1px 2px #9d9d9d, inset 0px 1px 1px #ffffff;
   }
+`;
+
+export const CreateIcon = styled.svg`
+  width: 15px;
+  height: 20px;
+  margin-left: 15px;
 `;
 
 export const Table = styled.article`
@@ -124,11 +126,13 @@ export const UpdateButton = styled.button`
   background: #f7f7f7;
   border: none;
   border-radius: 5px;
+  fill: #808080;
   color: #808080;
   cursor: pointer;
   outline: none;
   box-shadow: 0px 2px 5px #9d9d9d, inset 0px 2px 2px #ffffff;
   &:hover {
+    fill: #2246eb;
     color: #2246eb;
   }
   &:active {
@@ -145,14 +149,22 @@ export const DeleteButton = styled.button`
   background: none;
   border: none;
   border-radius: 5px;
-  color: #808080;
   cursor: pointer;
+  fill: #808080;
+  color: #808080;
   outline: none;
   box-shadow: 0px 2px 5px #9d9d9d, inset 0px 2px 2px #ffffff;
   &:hover {
+    fill: #d40000;
     color: #d40000;
   }
   &:active {
     box-shadow: 0px 1px 2px #9d9d9d, inset 0px 1px 1px #ffffff;
   }
+`;
+
+export const TableIcon = styled.svg`
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
 `;

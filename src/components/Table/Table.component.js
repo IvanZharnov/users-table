@@ -1,25 +1,30 @@
 import React, { PureComponent as Component, Fragment} from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   getUsers,
   deleteUser,
   createUser,
   updateUser,
- } from '../../resources/action';
+} from '../../resources/action';
+import { usersIcon } from './icons';
 import * as userSelector from '../../resources/selector';
 import Modal from '../ModalWindow/ModalWindow.component';
 import {
   Wrapper,
   Header,
-  ReloadButton,
+  TitleText,
   Title,
+  Icon,
   CreateButton,
+  CreateIcon,
   Table,
   TableHeader,
   Main,
   MainRow,
   DeleteButton,
-  UpdateButton
+  UpdateButton,
+  TableIcon
 } from './Table.styled';
 
 class UsersTable extends Component {
@@ -29,11 +34,12 @@ class UsersTable extends Component {
     isCreateModal: true,
     firstName: '',
     lastName: '',
-    id: null,
+    id: null
   };
 
   componentDidMount() {
     this.props.getUsers();
+    console.log(this.props);
   };
 
   handleOpenUpdateModalClick = (id, first_name, last_name) => {
@@ -42,7 +48,7 @@ class UsersTable extends Component {
       isCreateModal: false,
       firstName: first_name,
       lastName: last_name,
-      id: id,
+      id: id
     });
   };
 
@@ -86,14 +92,23 @@ class UsersTable extends Component {
     return (
       <Wrapper>
         <Header>
-          <ReloadButton onClick={this.props.getUsers}>
-            reload
-          </ReloadButton>
-          <Title>
-            Users
+          <Title onClick={this.props.getUsers}>
+            <Icon width="512px" height="512px" viewBox="0 0 80 80">
+              <path d={usersIcon.users} />
+            </Icon>
+            <TitleText>
+              Users
+            </TitleText>
           </Title>
           <CreateButton onClick={this.handleOpenCreateModalClick}>
             create
+            <CreateIcon
+              width="325pt"
+              height="325pt"
+              viewBox="0 0 325 325"
+            >
+              <path d={usersIcon.add} />
+            </CreateIcon>
           </CreateButton>
           {
             this.state.isModalOpen &&
@@ -130,7 +145,7 @@ class UsersTable extends Component {
           {!!this.props.users.length &&
           <Main>
           {this.props.users.map(item =>
-            <Fragment>
+            <Fragment key={item.id}>
               <MainRow>
                 <span>
                   {item.id}
@@ -141,11 +156,28 @@ class UsersTable extends Component {
                 <span>
                   {item.last_name}
                 </span>
-                <UpdateButton onClick={() => this.handleOpenUpdateModalClick(item.id, item.first_name, item.last_name)}>
-                  update
+                <UpdateButton onClick={() => this.handleOpenUpdateModalClick(
+                  item.id, item.first_name, item.last_name
+                )}>
+                  Update
+                  <TableIcon
+                    width="512px"
+                    height="512px"
+                    viewBox="0 0 512 512"
+                  >
+                    <path d={usersIcon.updateTop} />
+                    <path d={usersIcon.updateBottom} />
+                  </TableIcon>
                 </UpdateButton>
                 <DeleteButton onClick={() => this.handleDeleteButtonClick(item.id)}>
-                  delete
+                  Delete
+                  <TableIcon
+                    width="47.971px"
+                    height="47.971px"
+                    viewBox="0 0 47.971 47.971"
+                  >
+                    <path d={usersIcon.trash} />
+                  </TableIcon>
                 </DeleteButton>
               </MainRow>
             </Fragment>
@@ -155,8 +187,20 @@ class UsersTable extends Component {
         </Table>
       </Wrapper>
     );
-  }
-}
+  };
+};
+
+UsersTable.propTypes = {
+  getUsers: PropTypes.func.isRequired,
+  createUser: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired,
+  paymentHistory: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired
+  }))
+};
 
 const mapStateToProps = state => ({
   users: userSelector.getUsers(state),
