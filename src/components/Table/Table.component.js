@@ -11,15 +11,13 @@ import { usersIcon } from './icons';
 import * as userSelector from '../../resources/selector';
 import Modal from '../ModalWindow/ModalWindow.component';
 import {
+  Button,
+  Table
+} from 'reactstrap';
+import './Table.css';
+import {
   Wrapper,
   Header,
-  TitleText,
-  Title,
-  Icon,
-  CreateButton,
-  CreateIcon,
-  Table,
-  TableHeader,
   Main,
   MainRow,
   DeleteButton,
@@ -92,24 +90,32 @@ class UsersTable extends Component {
     return (
       <Wrapper>
         <Header>
-          <Title onClick={this.props.getUsers}>
-            <Icon width="512px" height="512px" viewBox="0 0 80 80">
+          <Button
+            onClick={this.props.getUsers}
+            className="TitleButton"
+          >
+            <svg
+              width="25px"
+              height="25px"
+              viewBox="0 0 80 80"
+            >
               <path d={usersIcon.users} />
-            </Icon>
-            <TitleText>
-              Users
-            </TitleText>
-          </Title>
-          <CreateButton onClick={this.handleOpenCreateModalClick}>
+            </svg>
+            Users
+          </Button>
+          <Button
+            className="CreateButton"
+            onClick={this.handleOpenCreateModalClick}
+          >
             create
-            <CreateIcon
-              width="325pt"
-              height="325pt"
+            <svg
+              width="15px"
+              height="15px"
               viewBox="0 0 325 325"
             >
-              <path d={usersIcon.add} />
-            </CreateIcon>
-          </CreateButton>
+              <path d={usersIcon.add}/>
+            </svg>
+          </Button>
           {
             this.state.isModalOpen &&
             <Modal
@@ -124,24 +130,16 @@ class UsersTable extends Component {
             />
           }
         </Header>
-        <Table>
-          <TableHeader>
-            <span>
-              id
-            </span>
-            <span>
-              first name
-            </span>
-            <span>
-              last name
-            </span>
-            <span>
-              update
-            </span>
-            <span>
-              delete
-            </span>
-          </TableHeader>
+        <Table className="TableWrapper">
+          <thead className="TableHeader">
+            <tr>
+              <th>id</th>
+              <th>first name</th>
+              <th>last name</th>
+              <th>update</th>
+              <th>delete</th>
+            </tr>
+          </thead>
           {!!this.props.users.length &&
           <Main>
           {this.props.users.map(item =>
