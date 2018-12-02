@@ -11,19 +11,12 @@ import { usersIcon } from './icons';
 import * as userSelector from '../../resources/selector';
 import Modal from '../ModalWindow/ModalWindow.component';
 import {
+  Container,
   Button,
-  Table
+  Table,
+  Row
 } from 'reactstrap';
 import './Table.css';
-import {
-  Wrapper,
-  Header,
-  Main,
-  MainRow,
-  DeleteButton,
-  UpdateButton,
-  TableIcon
-} from './Table.styled';
 
 class UsersTable extends Component {
 
@@ -32,13 +25,20 @@ class UsersTable extends Component {
     isCreateModal: true,
     firstName: '',
     lastName: '',
-    id: null
+    id: null,
+    users: [
+      {
+        id: 1,
+        firstName: 'John',
+        lastName: 'Doe',
+      }
+    ]
   };
 
-  componentDidMount() {
-    this.props.getUsers();
-    console.log(this.props);
-  };
+  // componentDidMount() {
+  //   // this.props.getUsers();
+  //   console.log(this.props);
+  // };
 
   handleOpenUpdateModalClick = (id, first_name, last_name) => {
     this.setState({
@@ -88,11 +88,11 @@ class UsersTable extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <Header>
+      <Container className="Wrapper">
+        <Row className="Title">
           <Button
+            className="Button TitleButton"
             onClick={this.props.getUsers}
-            className="TitleButton"
           >
             <svg
               width="25px"
@@ -104,7 +104,7 @@ class UsersTable extends Component {
             Users
           </Button>
           <Button
-            className="CreateButton"
+            className="Button CreateButton"
             onClick={this.handleOpenCreateModalClick}
           >
             create
@@ -129,61 +129,68 @@ class UsersTable extends Component {
               isCreate={this.state.isCreateModal}
             />
           }
-        </Header>
-        <Table className="TableWrapper">
-          <thead className="TableHeader">
-            <tr>
-              <th>id</th>
-              <th>first name</th>
-              <th>last name</th>
-              <th>update</th>
-              <th>delete</th>
-            </tr>
-          </thead>
-          {!!this.props.users.length &&
-          <Main>
-          {this.props.users.map(item =>
-            <Fragment key={item.id}>
-              <MainRow>
-                <span>
-                  {item.id}
-                </span>
-                <span>
-                  {item.first_name}
-                </span>
-                <span>
-                  {item.last_name}
-                </span>
-                <UpdateButton onClick={() => this.handleOpenUpdateModalClick(
-                  item.id, item.first_name, item.last_name
-                )}>
-                  Update
-                  <TableIcon
-                    width="512px"
-                    height="512px"
-                    viewBox="0 0 512 512"
-                  >
-                    <path d={usersIcon.updateTop} />
-                    <path d={usersIcon.updateBottom} />
-                  </TableIcon>
-                </UpdateButton>
-                <DeleteButton onClick={() => this.handleDeleteButtonClick(item.id)}>
-                  Delete
-                  <TableIcon
-                    width="47.971px"
-                    height="47.971px"
-                    viewBox="0 0 47.971 47.971"
-                  >
-                    <path d={usersIcon.trash} />
-                  </TableIcon>
-                </DeleteButton>
-              </MainRow>
-            </Fragment>
-          )}
-          </Main>
-        }
-        </Table>
-      </Wrapper>
+        </Row>
+        <Row>
+          <Table className="TableWrapper">
+            <thead>
+              <tr className="TableHeader">
+                <th className="TableHeaderColumn">id</th>
+                <th className="TableHeaderColumn">first name</th>
+                <th className="TableHeaderColumn">last name</th>
+                <th className="TableHeaderColumn">update</th>
+                <th className="TableHeaderColumn">delete</th>
+              </tr>
+            </thead>
+            {!this.props.users.length &&
+            <tbody className="TableMain">
+            {this.state.users.map(item =>
+              <Fragment key={item.id}>
+              {console.log(item)}
+                <tr className="TableMainRow">
+                  <td>{item.id}</td>
+                  <td>{item.firstName}</td>
+                  <td>{item.lastName}</td>
+                  <td>
+                    <Button
+                      onClick={() => this.handleOpenUpdateModalClick(
+                        item.id, item.firstName, item.lastName
+                      )}
+                      className="Button UpdateButton"
+                    >
+                      Update
+                      <svg
+                        width="13px"
+                        height="13px"
+                        viewBox="0 0 512 512"
+                      >
+                        <path d={usersIcon.updateTop} />
+                        <path d={usersIcon.updateBottom} />
+                      </svg>
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      onClick={() => this.handleDeleteButtonClick(item.id)}
+                      className="Button DeleteButton"
+                    >
+                      Delete
+                      <svg
+                        width="12px"
+                        height="12px"
+                        viewBox="0 0 47.971 47.971"
+                      >
+                        <path d={usersIcon.trash} />
+                      </svg>
+                    </Button>
+                  </td>
+                </tr>
+              </Fragment>
+            )}
+            </tbody>
+          }
+          </Table>
+        </Row>
+      </Container>
     );
   };
 };
