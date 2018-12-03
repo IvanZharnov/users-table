@@ -10,35 +10,30 @@ import {
 import { usersIcon } from './icons';
 import * as userSelector from '../../resources/selector';
 import Modal from '../ModalWindow/ModalWindow.component';
+import Notification from '../Notifications/Notifications.component'
 import {
   Container,
   Button,
   Table,
-  Row
+  Row,
+  Col
 } from 'reactstrap';
 import './Table.css';
 
 class UsersTable extends Component {
 
   state = {
+    isNotifyOpen: false,
     isModalOpen: false,
     isCreateModal: true,
     firstName: '',
     lastName: '',
-    id: null,
-    users: [
-      {
-        id: 1,
-        firstName: 'John',
-        lastName: 'Doe',
-      }
-    ]
+    id: null
   };
 
-  // componentDidMount() {
-  //   // this.props.getUsers();
-  //   console.log(this.props);
-  // };
+  componentDidMount() {
+    this.props.getUsers();
+  };
 
   handleOpenUpdateModalClick = (id, first_name, last_name) => {
     this.setState({
@@ -70,6 +65,9 @@ class UsersTable extends Component {
     this.props.createUser(first_name, last_name) :
     this.props.updateUser(id, first_name, last_name)
     this.handleCloseModalClick();
+    this.setState({
+      isNotifyOpen: true
+    });
   }
 
   handleCloseModalClick = () => {
@@ -90,32 +88,36 @@ class UsersTable extends Component {
     return (
       <Container className="Wrapper">
         <Row className="Title">
-          <Button
-            className="Button TitleButton"
-            onClick={this.props.getUsers}
-          >
-            <svg
-              width="25px"
-              height="25px"
-              viewBox="0 0 80 80"
+          <Col>
+            <Button
+              className="Button TitleButton"
+              onClick={this.props.getUsers}
             >
-              <path d={usersIcon.users} />
-            </svg>
-            Users
-          </Button>
-          <Button
-            className="Button CreateButton"
-            onClick={this.handleOpenCreateModalClick}
-          >
-            create
-            <svg
-              width="15px"
-              height="15px"
-              viewBox="0 0 325 325"
+              <svg
+                width="25px"
+                height="25px"
+                viewBox="0 0 80 80"
+              >
+                <path d={usersIcon.users} />
+              </svg>
+              Users
+            </Button>
+          </Col>
+          <Col sm="4">
+            <Button
+              className="Button CreateButton"
+              onClick={this.handleOpenCreateModalClick}
             >
-              <path d={usersIcon.add}/>
-            </svg>
-          </Button>
+              create
+              <svg
+                width="15px"
+                height="15px"
+                viewBox="0 0 325 325"
+              >
+                <path d={usersIcon.add}/>
+              </svg>
+            </Button>
+          </Col>
           {
             this.state.isModalOpen &&
             <Modal
@@ -127,6 +129,12 @@ class UsersTable extends Component {
               id={this.state.id}
               saveData={this.handleSave}
               isCreate={this.state.isCreateModal}
+            />
+          }
+          {
+            this.state.isNotifyOpen &&
+            <Notification
+
             />
           }
         </Row>
@@ -141,26 +149,25 @@ class UsersTable extends Component {
                 <th className="TableHeaderColumn">delete</th>
               </tr>
             </thead>
-            {!this.props.users.length &&
+            {!!this.props.users.length &&
             <tbody className="TableMain">
-            {this.state.users.map(item =>
+            {this.props.users.map(item =>
               <Fragment key={item.id}>
               {console.log(item)}
                 <tr className="TableMainRow">
                   <td>{item.id}</td>
-                  <td>{item.firstName}</td>
-                  <td>{item.lastName}</td>
+                  <td>{item.first_name}</td>
+                  <td>{item.last_name}</td>
                   <td>
                     <Button
                       onClick={() => this.handleOpenUpdateModalClick(
-                        item.id, item.firstName, item.lastName
+                        item.id, item.first_name, item.last_name
                       )}
                       className="Button UpdateButton"
                     >
-                      Update
                       <svg
-                        width="13px"
-                        height="13px"
+                        width="15px"
+                        height="15px"
                         viewBox="0 0 512 512"
                       >
                         <path d={usersIcon.updateTop} />
@@ -173,10 +180,9 @@ class UsersTable extends Component {
                       onClick={() => this.handleDeleteButtonClick(item.id)}
                       className="Button DeleteButton"
                     >
-                      Delete
                       <svg
-                        width="12px"
-                        height="12px"
+                        width="13px"
+                        height="13px"
                         viewBox="0 0 47.971 47.971"
                       >
                         <path d={usersIcon.trash} />

@@ -7,7 +7,7 @@ const transition = keyframes`
 
 export const ModalWindow = styled.div`
   position: fixed;
-  padding-top: 5em;
+  padding-top: 15em;
   z-index: 1;
   left: 0;
   top: 0;
