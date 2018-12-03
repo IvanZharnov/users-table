@@ -86,6 +86,11 @@ class UsersTable extends Component {
 
   render() {
     return (
+      <Fragment>
+      {
+        this.state.isNotifyOpen &&
+        <Notification />
+      }
       <Container className="Wrapper">
         <Row className="Title">
           <Col>
@@ -129,12 +134,6 @@ class UsersTable extends Component {
               id={this.state.id}
               saveData={this.handleSave}
               isCreate={this.state.isCreateModal}
-            />
-          }
-          {
-            this.state.isNotifyOpen &&
-            <Notification
-
             />
           }
         </Row>
@@ -197,6 +196,7 @@ class UsersTable extends Component {
           </Table>
         </Row>
       </Container>
+    </Fragment>
     );
   };
 };
