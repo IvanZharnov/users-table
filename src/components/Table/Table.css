@@ -1,63 +1,66 @@
 .Wrapper {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  margin: 0 25%;
   font-family: 'Open Sans', sans-serif;
+  justify-content: center;
+  margin: 0 25%;
 }
 
 .Title {
-  display: flex;
+  background-image: linear-gradient(135deg, #3b41c5 0%, #a981bb 100%);
   align-items: center;
+  height: 50px;
+  border-radius: 8px;
+  display: flex;
   justify-content: space-between;
-  width: 100%;
+  padding: 0 9px;
   margin: 20px 0;
+  box-shadow: 0 1px 10px #9d9d9d;
 }
 
 .Button {
   align-items: center;
-  background: #f7f7f7;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px #9d9d9d, inset 0 2px 2px #ffffff;
+  background: #fbfbfb;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
   color: #808080;
   cursor: pointer;
   display: flex;
-  fill: #808080;
+  fill: #9e9e9e;
+  outline: none;
   font-size: 14px;
   justify-content: space-around;
 }
 
 .TitleButton {
+  border-color: #4748c4;
   color: #4748c4;
   fill: #4748c4;
   height: 35px;
   text-transform: uppercase;
   width: 120px;
 }
-.TitleButton:focus {
-  border: none;
-  outline: 0;
-}
+
 .TitleButton:active {
-  box-shadow: 0 1px 2px #9d9d9d, inset 0 1px 1px #ffffff;
+  border-width: 2px;
 }
 
 .CreateButton {
+  border-color: #9e7bbc;
+  color: #9e7bbc;
+  fill: #9e7bbc;
   height: 35px;
   text-transform: uppercase;
   width: 120px;
 }
-.CreateButton:focus {
-  border: none;
-  outline: 0;
-}
+
 .CreateButton:hover {
+  border-color: #00a70b;
   color: #00a70b;
   fill: #00a70b;
 }
 .CreateButton:active {
-  box-shadow: 0 1px 2px #9d9d9d, inset 0 1px 1px #ffffff;
+  border-width: 2px;
 }
 
 .TableWrapper {
@@ -76,9 +79,9 @@
   background-image: linear-gradient(135deg, #3b41c5 0%, #a981bb 100%);
   color: #fff;
   display: grid;
-  grid-template-columns: 1fr repeat(4, 2fr);
   flex-direction: column;
   font-size: 15px;
+  grid-template-columns: 1fr repeat(4, 2fr);
   height: 50px;
   text-transform: uppercase;
   width: 100%;
@@ -89,48 +92,45 @@
 }
 
 .TableMain {
-  background: #fafafa;
+  background: #fbfbfb;
 }
 
 .TableMainRow {
-  display: grid;
-  grid-template-columns: 1fr repeat(4, 2fr);
-  justify-items: center;
   align-items: center;
-  height: 50px;
-  font-size: 14px;
+  border-top: 1px solid #d7d7d7;
   color: #808080;
-  border-bottom: 1px solid #dfdfdf;
+  display: grid;
+  font-size: 14px;
+  grid-template-columns: 1fr repeat(4, 2fr);
+  height: 50px;
+  justify-items: center;
 }
 
 .UpdateButton {
   height: 28px;
   width: 80px;
+  box-shadow: none;
 }
-.UpdateButton:focus {
-  border: none;
-  outline: 0;
-}
+
 .UpdateButton:hover {
+  border-color: #2246eb;
   color: #2246eb;
   fill: #2246eb;
 }
 .UpdateButton:active {
-  box-shadow: 0 1px 2px #9d9d9d, inset 0 1px 1px #ffffff;
+  border-width: 2px;
 }
 
 .DeleteButton {
   height: 28px;
   width: 80px;
 }
-.DeleteButton:focus {
-  border: none;
-  outline: 0;
-}
+
 .DeleteButton:hover {
+  border-color: #d40000;
   color: #d40000;
   fill: #d40000;
 }
 .DeleteButton:active {
-  box-shadow: 0 1px 2px #9d9d9d, inset 0 1px 1px #ffffff;
+  border-width: 2px;
 }
