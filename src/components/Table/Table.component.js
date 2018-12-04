@@ -1,6 +1,8 @@
 import React, { PureComponent as Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   getUsers,
   deleteUser,
@@ -9,8 +11,8 @@ import {
 } from '../../resources/action';
 import { usersIcon } from './icons';
 import * as userSelector from '../../resources/selector';
+import * as notify from './helpers';
 import Modal from '../ModalWindow/ModalWindow.component';
-import Notification from '../Notifications/Notifications.component'
 import {
   Container,
   Button,
@@ -67,8 +69,9 @@ class UsersTable extends Component {
     this.handleCloseModalClick();
     this.setState({
       isNotifyOpen: true
-    });
-  }
+    })
+    notify.successCreateUserNotify();
+  };
 
   handleCloseModalClick = () => {
     this.setState({
@@ -89,7 +92,17 @@ class UsersTable extends Component {
       <Fragment>
       {
         this.state.isNotifyOpen &&
-        <Notification />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={30000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange={false}
+          draggable
+          pauseOnHover
+        />
       }
       <Container className="Wrapper">
         <Row className="Title">
