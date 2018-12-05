@@ -18,7 +18,10 @@ import {
   Button,
   Table,
   Row,
-  Col
+  Col,
+  Pagination,
+  PaginationItem,
+  PaginationLink
 } from 'reactstrap';
 import './Table.css';
 
@@ -63,14 +66,27 @@ class UsersTable extends Component {
   };
 
   handleSave = (id, first_name, last_name) => {
-    (this.state.isCreateModal) ?
-    this.props.createUser(first_name, last_name) :
-    this.props.updateUser(id, first_name, last_name)
-    this.handleCloseModalClick();
-    this.setState({
-      isNotifyOpen: true
-    })
-    notify.successCreateUserNotify();
+    console.log(this.props.users);
+    if(this.state.isCreateModal) {
+      this.props.createUser(first_name, last_name);
+      this.handleCloseModalClick();
+      this.props.users !== {} ?
+      notify.successCreateUserNotify() :
+      notify.errorCreateUserNotify();
+      this.setState({
+        isNotifyOpen: true
+      });
+    }
+    else {
+      this.props.updateUser(id, first_name, last_name);
+      this.handleCloseModalClick();
+      this.props.users !== {} ?
+      notify.successUpdateUserNotify() :
+      notify.errorUpdateUserNotify();
+      this.setState({
+        isNotifyOpen: true
+      });
+    };
   };
 
   handleCloseModalClick = () => {
@@ -165,7 +181,6 @@ class UsersTable extends Component {
             <tbody className="TableMain">
             {this.props.users.map(item =>
               <Fragment key={item.id}>
-              {console.log(item)}
                 <tr className="TableMainRow">
                   <td>{item.id}</td>
                   <td>{item.first_name}</td>
@@ -207,6 +222,28 @@ class UsersTable extends Component {
             </tbody>
           }
           </Table>
+        </Row>
+        <Row>
+          <Pagination aria-label="Page navigation example">
+            <PaginationItem>
+              <PaginationLink previous href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">
+                3
+              </PaginationLink>
+            </PaginationItem>
+          </Pagination>
         </Row>
       </Container>
     </Fragment>
