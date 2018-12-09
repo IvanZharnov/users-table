@@ -66,23 +66,20 @@ class UsersTable extends Component {
   };
 
   handleSave = (id, first_name, last_name) => {
-    console.log(this.props.users);
     if(this.state.isCreateModal) {
-      this.props.createUser(first_name, last_name);
+      this.props.createUser(first_name, last_name)
+      .then(() => notify.successCreateUserNotify())
+      .catch(() => notify.errorCreateUserNotify());
       this.handleCloseModalClick();
-      this.props.users !== {} ?
-      notify.successCreateUserNotify() :
-      notify.errorCreateUserNotify();
       this.setState({
         isNotifyOpen: true
       });
     }
     else {
-      this.props.updateUser(id, first_name, last_name);
+      this.props.updateUser(id, first_name, last_name)
+      .then(() => notify.successUpdateUserNotify())
+      .catch(() => notify.errorUpdateUserNotify());
       this.handleCloseModalClick();
-      this.props.users !== {} ?
-      notify.successUpdateUserNotify() :
-      notify.errorUpdateUserNotify();
       this.setState({
         isNotifyOpen: true
       });
@@ -100,7 +97,12 @@ class UsersTable extends Component {
   };
 
   handleDeleteButtonClick = (id) => {
-    this.props.deleteUser(id);
+    this.props.deleteUser(id)
+    .then(() => notify.successDeleteUserNotify())
+    .catch(() => notify.errorDeleteUserNotify());
+    this.setState({
+      isNotifyOpen: true
+    });
   };
 
   render() {
